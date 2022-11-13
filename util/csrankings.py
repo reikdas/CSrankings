@@ -88,6 +88,8 @@ areadict: Dict[Area, List[Conference]] = {
     Area("popl"): [Conference("POPL")],
     Area("pldi"): [Conference("PLDI")],
     Area("cgo"): [Conference("CGO")],
+    Area("ppopp"): [Conference("PPoPP")],
+    Area("ecoop"): [Conference("ECOOP")],
     # "Next tier" - see csrankings.ts
     Area("oopsla"): [
         Conference("OOPSLA"),

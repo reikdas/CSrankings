@@ -14,6 +14,8 @@
 //inproceedings[booktitle="ACL/IJCNLP (1)"],
 //inproceedings[booktitle="ACL/IJCNLP (2)"],
 //inproceedings[booktitle="CGO"],
+//inproceedings[booktitle="PPoPP"],
+//inproceedings[booktitle="ECOOP"],
 //inproceedings[booktitle="NAACL"],
 //inproceedings[booktitle="NAACL-HLT"],
 //inproceedings[booktitle="NAACL-HLT (1)"],
