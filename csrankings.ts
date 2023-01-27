@@ -289,6 +289,7 @@ class CSRankings {
             'sc': 'hpc',
             'hpdc': 'hpc',
             'ics': 'hpc',
+            'socc': 'hpc',
             'mobicom': 'mobile',
             'mobisys': 'mobile',
             'sensys': 'mobile',

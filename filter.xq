@@ -16,6 +16,7 @@
 //inproceedings[booktitle="CGO"],
 //inproceedings[booktitle="PPoPP"],
 //inproceedings[booktitle="ECOOP"],
+//inproceedings[booktitle="SoCC"],
 //inproceedings[booktitle="NAACL"],
 //inproceedings[booktitle="NAACL-HLT"],
 //inproceedings[booktitle="NAACL-HLT (1)"],

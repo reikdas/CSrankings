@@ -135,6 +135,7 @@ areadict: Dict[Area, List[Conference]] = {
     Area("sc"): [Conference("SC")],
     Area("hpdc"): [Conference("HPDC")],
     Area("ics"): [Conference("ICS")],
+    Area("socc"): [Conference("SoCC")],
     # SIGBED
     Area("emsoft"): [
         Conference("EMSOFT"),

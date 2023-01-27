@@ -32,6 +32,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 ;
 ;
 class CSRankings {
+    // We have scrolled: increase the number we rank.
+    static updateMinimum(obj) {
+        if (CSRankings.minToRank <= 500) {
+            const t = obj.scrollTop;
+            CSRankings.minToRank = 5000;
+            CSRankings.getInstance().rank();
+            return t;
+        }
+        else {
+            return 0;
+        }
+    }
+    // Return the singleton corresponding to this object.
+    static getInstance() {
+        return CSRankings.theInstance;
+    }
+    // Promises polyfill.
+    static promise(cont) {
+        if (typeof Promise !== "undefined") {
+            var resolved = Promise.resolve();
+            resolved.then(cont);
+        }
+        else {
+            setTimeout(cont, 0);
+        }
+    }
     constructor() {
         this.note = {};
         this.authorFile = "./csrankings.csv";
@@ -104,7 +130,6 @@ class CSRankings {
             { area: "oopsla", title: "PL" },
             { area: "cgo", title: "PL" },
             { area: "ppopp", title: "PL" },
-            { area: "ecoop", title: "PL" },
             { area: "plan", title: "PL" },
             { area: "soft", title: "SE" },
             { area: "fse", title: "SE" },
@@ -313,32 +338,6 @@ class CSRankings {
                 }
             }
         }))();
-    }
-    // We have scrolled: increase the number we rank.
-    static updateMinimum(obj) {
-        if (CSRankings.minToRank <= 500) {
-            const t = obj.scrollTop;
-            CSRankings.minToRank = 5000;
-            CSRankings.getInstance().rank();
-            return t;
-        }
-        else {
-            return 0;
-        }
-    }
-    // Return the singleton corresponding to this object.
-    static getInstance() {
-        return CSRankings.theInstance;
-    }
-    // Promises polyfill.
-    static promise(cont) {
-        if (typeof Promise !== "undefined") {
-            var resolved = Promise.resolve();
-            resolved.then(cont);
-        }
-        else {
-            setTimeout(cont, 0);
-        }
     }
     translateNameToDBLP(name) {
         // Ex: "Emery D. Berger" -> "http://dblp.uni-trier.de/pers/hd/b/Berger:Emery_D="
@@ -1730,6 +1729,7 @@ CSRankings.parentMap = {
     'sc': 'hpc',
     'hpdc': 'hpc',
     'ics': 'hpc',
+    'socc': 'hpc',
     'mobicom': 'mobile',
     'mobisys': 'mobile',
     'sensys': 'mobile',
