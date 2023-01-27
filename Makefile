@@ -98,4 +98,3 @@ collab-graph: generated-author-info.csv faculty-coauthors.csv
 	$(PYTHON) util/generate-all-pubs.py
 	@echo "Building collaboration graph data."
 	$(PYTHON) util/make-collaboration-graph.py
-

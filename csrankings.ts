@@ -136,40 +136,22 @@ class CSRankings {
             if (!(area in CSRankings.parentMap)) {
                 CSRankings.topLevelAreas[area] = area;
             }
-            if (!(area in CSRankings.nextTier)) {
-                CSRankings.topTierAreas[area] = area;
-            }
             this.areaNames[position] = title;
             this.fields[position] = area;
             this.areaDict[area] = title; // this.areaNames[position];
             this.areaPosition[area] = position;
         }
 	const subareaList = [
-            ...this.aiAreas.map(key =>
-                ({[this.areaDict[key]] : "ai" })),
             ...this.systemsAreas.map(key =>
                 ({[this.areaDict[key]] : "systems"})),
-            ...this.theoryAreas.map(key =>
-                ({[this.areaDict[key]] : "theory"})),
-            ...this.interdisciplinaryAreas.map(key =>
-                ({[this.areaDict[key]] : "interdisciplinary"})),
         ];
 	for (const item of subareaList) {
 	    for (const key in item) {
 	    	this.subareas[key] = item[key];
 	    }
 	}
-        for (const area of this.aiAreas) {
-            this.aiFields.push(this.areaPosition[area]);
-        }
         for (const area of this.systemsAreas) {
             this.systemsFields.push(this.areaPosition[area]);
-        }
-        for (const area of this.theoryAreas) {
-            this.theoryFields.push(this.areaPosition[area]);
-        }
-        for (const area of this.interdisciplinaryAreas) {
-            this.otherFields.push(this.areaPosition[area]);
         }
         let parentCounter = 0;
         for (const child in CSRankings.parentMap) {
@@ -255,101 +237,10 @@ class CSRankings {
 
     public static readonly parentMap: { [key: string]: string }
         = {
-            'aaai': 'ai',
-            'ijcai': 'ai',
-            'cvpr': 'vision',
-            'eccv': 'vision',
-            'iccv': 'vision',
-            'icml': 'mlmining',
-            'kdd': 'mlmining',
-            'nips': 'mlmining',
-            'acl': 'nlp',
-            'emnlp': 'nlp',
-            'naacl': 'nlp',
-            'sigir': 'inforet',
-            'www': 'inforet',
-            'asplos': 'arch',
-            'isca': 'arch',
-            'micro': 'arch',
-            'hpca': 'arch', // next tier
-            'ccs': 'sec',
-            'oakland': 'sec',
-            'usenixsec': 'sec',
-            'ndss': 'sec', // next tier (for now)
-            'pets': 'sec', // next tier
-            'vldb': 'mod',
-            'sigmod': 'mod',
-            'icde': 'mod', // next tier
-            'pods': 'mod',
-            'dac': 'da',
-            'iccad': 'da',
-            'emsoft': 'bed',
-            'rtas': 'bed',
-            'rtss': 'bed',
-            'sc': 'hpc',
-            'hpdc': 'hpc',
-            'ics': 'hpc',
             'socc': 'hpc',
-            'mobicom': 'mobile',
-            'mobisys': 'mobile',
-            'sensys': 'mobile',
-            'imc': 'metrics',
-            'sigmetrics': 'metrics',
-            'osdi': 'ops',
-            'sosp': 'ops',
-            'eurosys': 'ops',    // next tier (see below)
-            'fast': 'ops',       // next tier
-            'usenixatc': 'ops',  // next tier
-            'popl': 'plan',
-            'pldi': 'plan',
-            'oopsla': 'plan', // next tier 
-            'icfp': 'plan',   // next tier
             'cgo' : 'plan',   // next tier
             'ppopp': 'plan', // next tier
             'ecoop': 'plan', //next tier
-            'fse': 'soft',
-            'icse': 'soft',
-            'ase': 'soft',    // next tier
-            'issta': 'soft',  // next tier
-            'nsdi': 'comm',
-            'sigcomm': 'comm',
-            'siggraph': 'graph',
-            'siggraph-asia': 'graph',
-            'focs': 'act', 
-            'soda': 'act',
-            'stoc': 'act',
-            'crypto': 'crypt',
-            'eurocrypt': 'crypt',
-            'cav': 'log',
-            'lics': 'log',
-            'ismb': 'bio',
-            'recomb': 'bio',
-            'ec': 'ecom',
-            'wine': 'ecom',
-            'chiconf': 'chi',
-            'ubicomp': 'chi',
-            'uist': 'chi',
-            'icra': 'robotics',
-            'iros': 'robotics',
-            'rss': 'robotics',
-            'vis': 'visualization',
-            'vr': 'visualization'
-        };
-
-    public static readonly nextTier: { [key: string]: boolean } =
-        {
-            'ase': true,
-            'issta': true,
-            'icde': true,
-            'pods': true,
-            'hpca': true,
-            'ndss': true, // for now
-            'pets': true,
-            'eurosys': true,
-            'fast': true,
-            'usenixatc': true,
-            'icfp': true,
-            'oopsla': true
         };
 
     public static readonly childMap: { [key: string]: [string] } = {};
@@ -366,116 +257,15 @@ class CSRankings {
         };
 
     private readonly areaMap: Array<AreaMap>
-        = [{ area: "ai", title: "AI" },
-        { area: "aaai", title: "AI" },
-        { area: "ijcai", title: "AI" },
-        { area: "vision", title: "Vision" },
-        { area: "cvpr", title: "Vision" },
-        { area: "eccv", title: "Vision" },
-        { area: "iccv", title: "Vision" },
-        { area: "mlmining", title: "ML" },
-        { area: "icml", title: "ML" },
-        { area: "kdd", title: "ML" },
-        { area: "nips", title: "ML" },
-        { area: "nlp", title: "NLP" },
-        { area: "acl", title: "NLP" },
-        { area: "emnlp", title: "NLP" },
-        { area: "naacl", title: "NLP" },
-        { area: "inforet", title: "Web+IR" },
-        { area: "sigir", title: "Web+IR" },
-        { area: "www", title: "Web+IR" },
-        { area: "arch", title: "Arch" },
-        { area: "asplos", title: "Arch" },
-        { area: "isca", title: "Arch" },
-        { area: "micro", title: "Arch" },
-        { area: "hpca", title: "Arch" },
-        { area: "comm", title: "Networks" },
-        { area: "sigcomm", title: "Networks" },
-        { area: "nsdi", title: "Networks" },
-        { area: "sec", title: "Security" },
-        { area: "ccs", title: "Security" },
-        { area: "oakland", title: "Security" },
-        { area: "usenixsec", title: "Security" },
-        { area: "ndss", title: "Security" },
-        { area: "pets", title: "Security" },
-        { area: "mod", title: "DB" },
-        { area: "sigmod", title: "DB" },
-        { area: "vldb", title: "DB" },
-        { area: "icde", title: "DB" }, // next tier
-        { area: "pods", title: "DB" }, // next tier
-        { area: "hpc", title: "HPC" },
-        { area: "sc", title: "HPC" },
-        { area: "hpdc", title: "HPC" },
-        { area: "ics", title: "HPC" },
-        { area: "mobile", title: "Mobile" },
-        { area: "mobicom", title: "Mobile" },
-        { area: "mobisys", title: "Mobile" },
-        { area: "sensys", title: "Mobile" },
-        { area: "metrics", title: "Metrics" },
-        { area: "imc", title: "Metrics" },
-        { area: "sigmetrics", title: "Metrics" },
-        { area: "ops", title: "OS" },
-        { area: "sosp", title: "OS" },
-        { area: "osdi", title: "OS" },
-        { area: "fast", title: "OS" },   // next tier
-        { area: "usenixatc", title: "OS" },   // next tier
-        { area: "eurosys", title: "OS" },
-        { area: "pldi", title: "PL" },
-        { area: "popl", title: "PL" },
-        { area: "icfp", title: "PL" },   // next tier
-        { area: "oopsla", title: "PL" }, // next tier
+        = [{ area: "hpc", title: "HPC" },
+        { area: "socc", title: "HPC" },
         { area: "cgo", title: "PL"},    // next tier
         { area: "ppopp", title: "PL"},   // next tier
+        { area: "ecoop", title: "PL" },
         { area: "plan", title: "PL" },
-        { area: "soft", title: "SE" },
-        { area: "fse", title: "SE" },
-        { area: "icse", title: "SE" },
-        { area: "ase", title: "SE" },    // next tier
-        { area: "issta", title: "SE" },  // next tier
-        { area: "act", title: "Theory" },
-        { area: "focs", title: "Theory" },
-        { area: "soda", title: "Theory" },
-        { area: "stoc", title: "Theory" },
-        { area: "crypt", title: "Crypto" },
-        { area: "crypto", title: "Crypto" },
-        { area: "eurocrypt", title: "Crypto" },
-        { area: "log", title: "Logic" },
-        { area: "cav", title: "Logic" },
-        { area: "lics", title: "Logic" },
-        { area: "graph", title: "Graphics" },
-        { area: "siggraph", title: "Graphics" },
-        { area: "siggraph-asia", title: "Graphics" },
-        { area: "chi", title: "HCI" },
-        { area: "chiconf", title: "HCI" },
-        { area: "ubicomp", title: "HCI" },
-        { area: "uist", title: "HCI" },
-        { area: "robotics", title: "Robotics" },
-        { area: "icra", title: "Robotics" },
-        { area: "iros", title: "Robotics" },
-        { area: "rss", title: "Robotics" },
-        { area: "bio", title: "Comp. Bio" },
-        { area: "ismb", title: "Comp. Bio" },
-        { area: "recomb", title: "Comp. Bio" },
-        { area: "da", title: "EDA" },
-        { area: "dac", title: "EDA" },
-        { area: "iccad", title: "EDA" },
-        { area: "bed", title: "Embedded" },
-        { area: "emsoft", title: "Embedded" },
-        { area: "rtas", title: "Embedded" },
-        { area: "rtss", title: "Embedded" },
-        { area: "visualization", title: "Visualization" },
-        { area: "vis", title: "Visualization" },
-        { area: "vr", title: "Visualization" },
-        { area: "ecom", title: "ECom" },
-        { area: "ec", title: "ECom" },
-        { area: "wine", title: "ECom" }
-            //,{ area : "cse", title : "CSEd" }
         ];
 
-    private readonly aiAreas = ["ai", "vision", "mlmining", "nlp", "inforet"];
-    private readonly systemsAreas = ["arch", "comm", "sec", "mod", "da", "bed", "hpc", "mobile", "metrics", "ops", "plan", "soft"];
-    private readonly theoryAreas = ["act", "crypt", "log"];
-    private readonly interdisciplinaryAreas = ["bio", "graph", "ecom", "chi", "robotics", "visualization"];
+    private readonly systemsAreas = ["hpc", "plan"];
 
     private readonly areaNames: Array<string> = [];
     private readonly fields: Array<string> = [];
@@ -707,14 +497,8 @@ class CSRankings {
 
         // Areas with their category info for color map (from https://colorbrewer2.org/#type=qualitative&scheme=Set1&n=4).
         const areas = [
-            ...this.aiAreas.map(key =>
-                ({key: key, label: this.areaDict[key], color: "#377eb8"})),
             ...this.systemsAreas.map(key =>
                 ({key: key, label: this.areaDict[key], color: "#ff7f00"})),
-            ...this.theoryAreas.map(key =>
-                ({key: key, label: this.areaDict[key], color: "#4daf4a"})),
-            ...this.interdisciplinaryAreas.map(key =>
-                ({key: key, label: this.areaDict[key], color: "#984ea3"}))
         ];
         areas.forEach(area => datadict[area.key] = 0);
 
@@ -1046,11 +830,7 @@ class CSRankings {
                 // Activate / deactivate all children as appropriate.
                 CSRankings.childMap[item].forEach((k) => {
                     const str = `input[name=${k}]`;
-                    if (k in CSRankings.nextTier) {
-                        $(str).prop('checked', false);
-                    } else {
-                        $(str).prop('checked', value);
-                    }
+                    $(str).prop('checked', value);
                 });
             }
         }
@@ -1089,9 +869,6 @@ class CSRankings {
         this.authorAreas = {};
         for (const r in this.authors) {
             const { area } = this.authors[r];
-            if (area in CSRankings.nextTier) {
-                continue;
-            }
             const { year } = this.authors[r];
             if ((year < startyear) || (year > endyear)) {
                 continue;
@@ -1436,13 +1213,8 @@ class CSRankings {
             const item = this.fields[i];
             const str = `input[name=${item}]`;
             if (value) {
-                // Turn off all next tier venues.
-                if (item in CSRankings.nextTier) {
-                    $(str).prop('checked', false);
-                } else {
                     $(str).prop('checked', true);
                     $(str).prop('disabled', false);
-                }
             } else {
                 // turn everything off.
                 $(str).prop('checked', false);
@@ -1631,11 +1403,7 @@ class CSRankings {
                     if (this.fields[i] in CSRankings.childMap) {
                         CSRankings.childMap[this.fields[i]].forEach((k) => {
                             let val = $(`input[name=${k}]`).prop('checked');
-                            if (!(k in CSRankings.nextTier)) {
-                                allChecked &= val;
-                            } else {
-                                allChecked &= val ? 0 : 1;
-                            }
+                            allChecked &= val ? 0 : 1;
                         });
                     }
                     if (allChecked) {
@@ -1816,9 +1584,7 @@ class CSRankings {
                     $(str).prop('disabled', false);
                     // and activate all children.
                     CSRankings.childMap[item].forEach((k) => {
-                        if (!(k in CSRankings.nextTier)) {
                             $(`input[name=${k}]`).prop('checked', true);
-                        }
                     });
                 }
                 //		}
@@ -1843,9 +1609,7 @@ class CSRankings {
                 if (item in CSRankings.childMap) {
                     // Activate all children.
                     CSRankings.childMap[item].forEach((k) => {
-                        if (!(k in CSRankings.nextTier)) {
                             $(`input[name=${k}]`).prop('checked', true);
-                        }
                     });
                 }
             }
@@ -1873,11 +1637,7 @@ class CSRankings {
         let aboveFold: string[] = [];
         let belowFold: string[] = [];
         sibs.forEach((elem) => {
-            if (elem in CSRankings.nextTier) {
-                belowFold.push(elem);
-            } else {
                 aboveFold.push(elem);
-            }
         });
         // Count how many are checked above and below.
         let numCheckedAbove = 0;
@@ -1945,13 +1705,7 @@ class CSRankings {
                         // allChecked means all top tier conferences
                         // are on and all next tier conferences are
                         // off.
-                        if (!(k in CSRankings.nextTier)) {
-                            // All need to be on.
-                            allChecked &= val;
-                        } else {
-                            // All need to be off.
-                            allChecked &= val ? 0 : 1;
-                        }
+                        allChecked &= val;
                     });
                     // Activate parent if any checked.
                     $(strparent).prop('checked', anyChecked);
@@ -1968,12 +1722,7 @@ class CSRankings {
                     if (field in CSRankings.childMap) {
                         for (const child of CSRankings.childMap[field]) {
                             const strchild = `input[name=${child}]`;
-                            if (!(child in CSRankings.nextTier)) {
-                                $(strchild).prop('checked', val);
-                            } else {
-                                // Always deactivate next tier conferences.
-                                $(strchild).prop('checked', false);
-                            }
+                            $(strchild).prop('checked', val);
                         }
                     }
                 }
