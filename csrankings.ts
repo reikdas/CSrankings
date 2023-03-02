@@ -289,6 +289,7 @@ class CSRankings {
             'rtss': 'bed',
             'sc': 'hpc',
             'hpdc': 'hpc',
+            'socc': 'hpc',
             'ics': 'hpc',
             'mobicom': 'mobile',
             'mobisys': 'mobile',
@@ -304,6 +305,9 @@ class CSRankings {
             'pldi': 'plan',
             'oopsla': 'plan', // next tier 
             'icfp': 'plan',   // next tier
+            'cgo': 'plan',
+            'ppopp': 'plan',
+            'ecoop': 'plan',
             'fse': 'soft',
             'icse': 'soft',
             'ase': 'soft',    // next tier
@@ -349,6 +353,10 @@ class CSRankings {
             'usenixatc': true,
             'icfp': true,
             'oopsla': true,
+            'cgo': true,
+            'ppopp': true,
+            'ecoop': true,
+            'socc': true,
 	    'kdd': true,
         };
 
@@ -407,6 +415,7 @@ class CSRankings {
         { area: "hpc", title: "HPC" },
         { area: "sc", title: "HPC" },
         { area: "hpdc", title: "HPC" },
+        { area: "socc", title: "HPC" },
         { area: "ics", title: "HPC" },
         { area: "mobile", title: "Mobile" },
         { area: "mobicom", title: "Mobile" },
@@ -425,6 +434,9 @@ class CSRankings {
         { area: "popl", title: "PL" },
         { area: "icfp", title: "PL" },   // next tier
         { area: "oopsla", title: "PL" }, // next tier
+        { area: "cgo", title: "PL" },
+        { area: "ppopp", title: "PL" },
+        { area: "ecoop", title: "PL" },
         { area: "plan", title: "PL" },
         { area: "soft", title: "SE" },
         { area: "fse", title: "SE" },
